@@ -2685,6 +2685,14 @@ impl Options {
             );
         }
     }
+
+    pub fn set_info_log_level(&mut self, log_level: i32) {
+        unsafe { ffi::rocksdb_options_set_info_log_level(self.inner, log_level as c_int) }
+    }
+
+    pub fn get_info_log_level(&mut self) -> i32 {
+        unsafe { ffi::rocksdb_options_get_info_log_level(self.inner) as i32 }
+    }
 }
 
 impl Default for Options {
